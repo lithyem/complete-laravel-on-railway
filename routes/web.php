@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
-
-Route::post('/tasksadd', [TaskController::class, 'add'])->name('tasks.add');
-
-Route::delete('/tasksdelete/{id}', [TaskController::class, 'delete'])->name('tasks.delete');
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::get('talks/create', [TalkController::class, 'create'])->name('talks.create');
     Route::post('talks', [TalkController::class, 'store'])->name('talks.store');
 
+	Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+	Route::post('/tasksadd', [TaskController::class, 'add'])->name('tasks.add');
+	Route::delete('/tasksdelete/{id}', [TaskController::class, 'delete'])->name('tasks.delete');
+
+	Route::get('/logout', [ProfileController::class, 'logout'])->name('profile.logout');
     
 });
 

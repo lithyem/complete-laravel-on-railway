@@ -28,6 +28,8 @@ class TaskController extends Controller
 		$task = new \App\Models\Task;
 		//dd($task);
 		$task->title = $request->input('title');
+		$task->description = $request->input('description');
+		$task->user_id = auth()->user()->id;
 		//$task->status = $request->input('status');
 		$task->save();
 		return redirect()->route('tasks.index')->with('success', 'Task added successfully!');

@@ -12,15 +12,18 @@
 	
 		<div class="container">
 			<h1>Laravel Quickstart - Basic</h1>
+			<a href="{{route('profile.logout')}}">Logout</></a>
 			<hr>
 
 			<!-- Current Tasks -->
-			<h2>Current Tasks</h2>
+			<h2>Current Tasks / {{auth()->user()->name}}</h2>
 
 			@if (count($tasks) > 0)
 				<table class="table table-striped task-table">
 					<thead>
 						<th>Task</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
 						<th>&nbsp;</th>
 					</thead>
 					<tbody>
@@ -29,6 +32,14 @@
 								<!-- Task Name -->
 								<td class="table-text">
 									<div>{{ $task->title }}</div>
+								</td>
+								<!-- Task description -->
+								<td class="table-text">
+									<div>{{ $task->description }}</div>
+								</td>
+								<!-- Task user name -->
+								<td class="table-text">
+									<div>{{ $task->user->name ?? "No user" }}</div>
 								</td>
 								<!-- Delete Button -->
 								<td>
@@ -67,9 +78,13 @@
 				{{ csrf_field() }}
 
 				<div class="form-group">
-					<label for="task" class="col-sm-3 control-label">Task</label>
 					<div class="col-sm-6">
+						<label for="task" class="col-sm-3 control-label">Title</label>
 						<input type="text" name="title" id="task-name" class="form-control">
+					</div>
+					<div class="col-sm-6">
+						<label for="task" class="col-sm-3 control-label">Description</label>
+						<input type="text" name="description" id="task-description" class="form-control">
 					</div>
 				</div>
 
